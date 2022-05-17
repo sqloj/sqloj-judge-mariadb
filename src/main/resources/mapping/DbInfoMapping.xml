@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pers.sy.sqloj.mapper.DbInfoMapper">
+
+    <resultMap id="VersionDO" type="pers.sy.sqloj.entity.VersionDO">
+        <result column="version" property="version"/>
+    </resultMap>
+
+    <select id="version" resultMap="VersionDO">
+        select @@version as version;
+    </select>
+
+</mapper>

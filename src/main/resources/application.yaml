@@ -1,0 +1,15 @@
+server:
+  port: 10100
+
+spring:
+  jackson:
+    time-zone: Asia/Shanghai
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://mariadb:3306/
+    username: root
+    password: sy123456
+
+mybatis:
+  mapper-locations: classpath:mapping/*Mapping.xml
+  type-aliases-package: pers.sy.sqloj.entity
