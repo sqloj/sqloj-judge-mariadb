@@ -1,14 +1,14 @@
 server:
-  port: 10100
+  port: ${SQLOJ_PORT:10100}
 
 spring:
   jackson:
     time-zone: Asia/Shanghai
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://judge-mariadb-database:3306/
-    username: root
-    password: sy123456
+    url: ${SQLOJ_DB_URL:jdbc:mariadb://judge-mariadb-database:3306/}
+    username: ${SQLOJ_DB_USER:root}
+    password: ${SQLOJ_DB_PASSWORD:sy123456}
 
 mybatis:
   mapper-locations: classpath:mapping/*Mapping.xml
