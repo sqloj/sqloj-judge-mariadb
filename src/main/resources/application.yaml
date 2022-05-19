@@ -6,7 +6,7 @@ spring:
     time-zone: Asia/Shanghai
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://mariadb:3306/
+    url: jdbc:mariadb://judge-mariadb-database:3306/
     username: root
     password: sy123456
 

@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 import pers.sy.sqloj.common.SystemInfo
+import pers.sy.sqloj.entity.PingVO
 import pers.sy.sqloj.service.InfoService
 import pers.sy.sqloj.service.JudgeService
 import pers.sy.sqloj.util.VResponse
@@ -39,6 +40,19 @@ class JudgeController
         }
     }
 
+    @PostMapping("/ping")
+    @Operation(summary = "数据库系统信息")
+    @ApiResponse(description = "数据库系统信息")
+    fun ping(
+        @RequestParam password: String
+    ): VResponse<Any?> {
+        if (infoService.verify(password)) {
+            return VResponse.ok(PingVO)
+        } else {
+            return VResponse.err(1, "密码错误")
+        }
+    }
+
     @PostMapping("/exec")
     @Operation(summary = "数据库系统信息")
     @ApiResponse(description = "数据库系统信息")
@@ -46,11 +60,14 @@ class JudgeController
         @RequestParam password: String,
         @RequestBody sql: String
     ): VResponse<Any?> {
-        if (infoService.verify(password)) {
+        if (!infoService.verify(password)) {
+            return VResponse.err(1, "密码错误")
+        }
+        try {
             val ret = judgeService.judge(sql, "tempdb")
             return VResponse.ok(ret)
-        } else {
-            return VResponse.err(1, "密码错误")
+        } catch (e: Exception) {
+            return VResponse.err(1, e.message)
         }
     }
 }

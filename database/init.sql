@@ -7,3 +7,8 @@ set collation_connection = utf8_general_ci;
 set collation_database = utf8_general_ci;
 set collation_server = utf8_general_ci;
 set time_zone = "+8:00";
+
+# 最大 SELECT 行数
+# SET @@SQL_SELECT_LIMIT=1000;
+
+

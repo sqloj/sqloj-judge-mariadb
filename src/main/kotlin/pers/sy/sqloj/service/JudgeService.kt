@@ -42,14 +42,14 @@ class JudgeService
         val ret: MutableList<Any?> = ArrayList()
         try {
             for (l in list) {
+                if (l.isBlank()) {
+                    continue
+                }
                 val tmp = exec(l)
-//                if (tmp != null && tmp.isNotEmpty()) {
-//                    ret.add(tmp)
-//                }
-                ret.add(tmp)
+                if (tmp != null && tmp.isNotEmpty()) {
+                    ret.add(tmp)
+                }
             }
-        } catch (e: Exception) {
-            e.printStackTrace()
         } finally {
             execWithoutRet("drop database ${tmpDB};")
         }
