@@ -67,7 +67,7 @@ class JudgeController
             val ret = judgeService.judge(sql, "tempdb")
             return VResponse.ok(ret)
         } catch (e: Exception) {
-            return VResponse.err(1, e.message)
+            return VResponse.err(2, e.message)
         }
     }
 }
