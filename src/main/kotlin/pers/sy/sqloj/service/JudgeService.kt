@@ -38,7 +38,8 @@ class JudgeService
     fun judge(sql: String, tmpDB: String): Any? {
         execWithoutRet("create database ${tmpDB};")
         execWithoutRet("use ${tmpDB};")
-        val list = sql.split(";")
+        val regex = Regex("""(--.*\n|#.*\n|\/\*(.|\r\n|\n)*\*\/)""")
+        val list = regex.replace(sql, "").split(";")
         val ret: MutableList<Any?> = ArrayList()
         try {
             for (l in list) {
